@@ -18,13 +18,15 @@ return {
 
         map('grn', vim.lsp.buf.rename, 'Renomear')
         map('gra', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
-        map('grr', require('telescope.builtin').lsp_references, 'Referências')
         map('gri', require('telescope.builtin').lsp_implementations, 'Implementação')
-        map('grd', require('telescope.builtin').lsp_definitions, 'Definição')
         map('grD', vim.lsp.buf.declaration, 'Declaração')
         map('gO', require('telescope.builtin').lsp_document_symbols, 'Símbolos do documento')
         map('gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Símbolos workspace')
         map('grt', require('telescope.builtin').lsp_type_definitions, 'Tipo')
+
+        -- Atalhos customizados com <leader>
+        map('<leader>gd', require('telescope.builtin').lsp_definitions, 'Go to Definition')
+        map('<leader>gr', require('telescope.builtin').lsp_references, 'Go to References')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
